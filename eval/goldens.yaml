@@ -1,0 +1,302 @@
+# eval/goldens.yaml — 40-item retrieve golden set for the demo purchase-order corpus.
+#
+# intent:
+#   A_penetrate       hit a layer of the knowledge card
+#   B_source          hit a constraint in sources/api
+#   C_module_trap     trap: shipments/sales must not top-rank a PO operation spec
+#   D_constraint      field/window constraints
+#   E_path_faithful   extracted path must be the asked /v1/... path
+#
+# Quota: A=16, B=8, C=8, D=4, E=4
+
+x-c-files: &c_files
+  - list-orders.md
+  - get-order.md
+  - order-status.md
+  - acknowledge.md
+
+goldens:
+  - id: A-01
+    intent: A_penetrate
+    question: 采购订单列表对应哪条 HTTP 路径？
+    must_hit: ["/v1/purchase-orders"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-02
+    intent: A_penetrate
+    question: 文档入口在哪里？
+    must_hit: ["文档站「采购订单」章节"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-03
+    intent: A_penetrate
+    question: 列表页要不要点搜索？
+    must_hit: ["无需点搜索"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-04
+    intent: A_penetrate
+    question: 列表查询窗口最长几天？
+    must_hit: ["查询窗 ≤7 天"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-05
+    intent: A_penetrate
+    question: 分页参数叫什么？
+    must_hit: ["page_size"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-06
+    intent: A_penetrate
+    question: 详情接口路径是什么？
+    must_hit: ["/v1/purchase-orders/{orderId}"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-07
+    intent: A_penetrate
+    question: 采购单号格式有什么约束？
+    must_hit: ["8 位字母数字"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-08
+    intent: A_penetrate
+    question: 状态接口路径是什么？
+    must_hit: ["/v1/purchase-orders/status"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-09
+    intent: A_penetrate
+    question: 状态接口会返回哪些值？
+    must_hit: ["accepted", "rejected", "pending"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-10
+    intent: A_penetrate
+    question: 确认接口路径是什么？
+    must_hit: ["/v1/purchase-orders/{orderId}/ack"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-11
+    intent: A_penetrate
+    question: 确认是写操作时看板怎么用？
+    must_hit: ["看板以读为主"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-12
+    intent: A_penetrate
+    question: 日期参数有什么成对要求？
+    must_hit: ["date_from", "date_to", "必须成对"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-13
+    intent: A_penetrate
+    question: 采购单号等于内部 id 吗？
+    must_hit: ["PO 号 ≠ 内部 id"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-14
+    intent: A_penetrate
+    question: 列表最多回看多久？
+    must_hit: ["最多回看 6 个月"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-15
+    intent: A_penetrate
+    question: page_size 上限是多少？
+    must_hit: ["上限 200"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-16
+    intent: A_penetrate
+    question: 这张卡讲的是什么订单？
+    must_hit: ["本卡只讲采购订单"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+
+  - id: B-01
+    intent: B_source
+    question: 列表规格里默认 page_size 是多少？
+    must_hit: ["default 50"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: B-02
+    intent: B_source
+    question: 列表规格如何描述 7 天窗口？
+    must_hit: ["at most 7 days"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: B-03
+    intent: B_source
+    question: 详情规格如何描述 orderId？
+    must_hit: ["8 alphanumeric characters"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: B-04
+    intent: B_source
+    question: 未知详情 id 返回什么？
+    must_hit: ["404"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: B-05
+    intent: B_source
+    question: 状态规格列出的三个值是什么？
+    must_hit: ["accepted, rejected, pending"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: B-06
+    intent: B_source
+    question: ack 规格如何定位写操作？
+    must_hit: ["write operation"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: B-07
+    intent: B_source
+    question: 列表规格对回看窗口怎么写？
+    must_hit: ["at most 6 months"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: B-08
+    intent: B_source
+    question: 状态规格强调它不是什么？
+    must_hit: ["not a shipment tracking feed"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+
+  - id: C-01
+    intent: C_module_trap
+    question: 发运单应该用采购订单列表接口吗？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-02
+    intent: C_module_trap
+    question: 销售订单是不是这张采购卡的范围？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-03
+    intent: C_module_trap
+    question: 用 get-order 查发运详情对不对？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-04
+    intent: C_module_trap
+    question: 发运跟踪是不是 status 接口？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-05
+    intent: C_module_trap
+    question: 给发运单做 ack 应该打采购 ack 吗？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-06
+    intent: C_module_trap
+    question: Shipment 和 Purchase Order 是同一张卡吗？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-07
+    intent: C_module_trap
+    question: Sales Order 能否当采购订单列表来查？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-08
+    intent: C_module_trap
+    question: 发票接口是不是本卡正文？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+
+  - id: D-01
+    intent: D_constraint
+    question: 采购单号必须是几位？
+    must_hit: ["8 位字母数字"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: D-02
+    intent: D_constraint
+    question: 状态查询窗口上限？
+    must_hit: ["查询窗 ≤7 天"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: D-03
+    intent: D_constraint
+    question: page_size 最大多少？
+    must_hit: ["上限 200"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: D-04
+    intent: D_constraint
+    question: 日期参数能否只传一个？
+    must_hit: ["必须成对"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+
+  - id: E-01
+    intent: E_path_faithful
+    question: 列出采购订单的路径是哪条？
+    must_hit: ["/v1/purchase-orders"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: E-02
+    intent: E_path_faithful
+    question: 采购订单详情路径是哪条？
+    must_hit: ["/v1/purchase-orders/{orderId}"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: E-03
+    intent: E_path_faithful
+    question: 采购订单状态路径是哪条？
+    must_hit: ["/v1/purchase-orders/status"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: E-04
+    intent: E_path_faithful
+    question: 采购订单确认路径是哪条？
+    must_hit: ["/v1/purchase-orders/{orderId}/ack"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
