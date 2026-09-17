@@ -1,4 +1,4 @@
-name: eval
+name: Offline eval
 
 on:
   workflow_dispatch:
