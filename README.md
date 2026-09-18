@@ -178,7 +178,7 @@ scripts/kb_sync.py          --dry-run 列出 sha256；live upsert 为 v1 桩
 scripts/path_extract.py     从 Markdown 抽出 /v1/... 路径
 tests/                      离线 pytest（47）
 .github/workflows/eval.yml  pytest + dry-run + fixture 评测
-docs/项目文档.md            中文详解与面试口径
+docs/项目文档.md            中文详解
 ```
 
 只有 `cards/**/*.md` 和 `sources/**/*.md` 允许进入「可上传」范围。`.env`、评测报告、密钥形态正文会被拦截。
