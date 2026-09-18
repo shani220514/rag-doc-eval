@@ -38,7 +38,7 @@ Offline-first **RAG retrieve evaluation** harness: golden set, rule-based Top5 s
 1. 用分层知识卡 + 对照源文档当语料  
 2. 用黄金集规定「必须出现的原文针」和「不该排到 Top1 的模块」  
 3. 用规则指标卡住召回、模块串扰、路径幻觉  
-4. 默认 fixture / pytest，保证面试现场和 CI **可复现**
+4. 默认 fixture / pytest，保证 CI **可复现**
 
 ---
 
