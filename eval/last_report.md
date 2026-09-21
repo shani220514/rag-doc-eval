@@ -1,13 +1,13 @@
-<!-- kb hash: nogit  IndexId:   time: 2026-09-17T14:57:56.807067+08:00
+<!-- kb hash: b3d5752  IndexId:   time: 2026-09-18T11:57:23.211968+08:00
      Recall@5 = not retrieve_miss / effective items with must_hit
      module accuracy = C-intent effective items without module_mixup
      path hallucination = illegal paths / extracted paths
 -->
 # RAG retrieve report
 
-- git: nogit
+- git: b3d5752
 - index_id: 
-- started_at: 2026-09-17T14:57:56.807067+08:00
+- started_at: 2026-09-18T11:57:23.211968+08:00
 - retrieve_error: 0
 - gate_ok: True
 
