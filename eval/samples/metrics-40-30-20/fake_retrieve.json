@@ -1,0 +1,107 @@
+{
+  "A-01": [
+    {
+      "file_name": "cards/purchase-order.md",
+      "title": "列表接口",
+      "content": "查询窗 ≤7 天。列表 `GET /v1/purchase-orders`。"
+    }
+  ],
+  "A-02": [
+    {
+      "file_name": "cards/purchase-order.md",
+      "title": "列表接口",
+      "content": "分页 `page_size` 默认 50。列表 `GET /v1/purchase-orders`。"
+    }
+  ],
+  "A-03": [
+    {
+      "file_name": "cards/purchase-order.md",
+      "title": "列表接口",
+      "content": "查询窗 ≤7 天。错误召回了 `GET /v1/shipments`。"
+    }
+  ],
+  "A-04": [
+    {
+      "file_name": "cards/purchase-order.md",
+      "title": "列表接口",
+      "content": "列表 `GET /v1/purchase-orders`。没有那条未入库约束。"
+    }
+  ],
+  "A-05": [
+    {
+      "file_name": "cards/purchase-order.md",
+      "title": "列表接口",
+      "content": "切片里只有发运路径 `GET /v1/shipments`。"
+    }
+  ],
+  "C-01": [
+    {
+      "file_name": "cards/purchase-order.md",
+      "title": "已知坑",
+      "content": "发运与销售订单不是本卡。列表 `GET /v1/purchase-orders`。"
+    }
+  ],
+  "C-02": [
+    {
+      "file_name": "cards/purchase-order.md",
+      "title": "已知坑",
+      "content": "发运与销售订单不是本卡。列表 `GET /v1/purchase-orders`。"
+    }
+  ],
+  "C-03": [
+    {
+      "file_name": "cards/purchase-order.md",
+      "title": "已知坑",
+      "content": "发运与销售订单不是本卡。列表 `GET /v1/purchase-orders`。"
+    }
+  ],
+  "C-04": [
+    {
+      "file_name": "sources/api/list-orders.md",
+      "title": "List purchase orders",
+      "content": "This is the shipment list. `GET /v1/purchase-orders`"
+    }
+  ],
+  "C-05": [
+    {
+      "file_name": "sources/api/get-order.md",
+      "title": "Get purchase order",
+      "content": "This is not a shipment detail. `GET /v1/purchase-orders`"
+    }
+  ],
+  "C-06": [
+    {
+      "file_name": "sources/api/order-status.md",
+      "title": "Purchase order status",
+      "content": "This is not a shipment tracking feed. `GET /v1/purchase-orders`"
+    }
+  ],
+  "C-07": [
+    {
+      "file_name": "sources/api/acknowledge.md",
+      "title": "Acknowledge purchase order",
+      "content": "Do not call this endpoint to acknowledge a shipment. `GET /v1/purchase-orders`"
+    }
+  ],
+  "C-08": [
+    {
+      "file_name": "sources/api/list-orders.md",
+      "title": "List purchase orders",
+      "content": "Not the sales-order list. `GET /v1/purchase-orders`"
+    }
+  ],
+  "C-09": [
+    {
+      "file_name": "sources/api/get-order.md",
+      "title": "Get purchase order",
+      "content": "Unknown ids return 404. `GET /v1/purchase-orders`"
+    }
+  ],
+  "C-10": [
+    {
+      "file_name": "sources/api/list-orders.md",
+      "title": "List purchase orders",
+      "content": "发运切片 `GET /v1/shipments`"
+    }
+  ]
+}

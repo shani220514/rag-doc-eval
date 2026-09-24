@@ -1,4 +1,10 @@
-"""Markdown report for retrieve eval. Does not change baseline_report.md."""
+"""Markdown report for retrieve eval. Does not change baseline_report.md.
+Recall@5 = not retrieve_miss / effective items with must_hit（未出现 retrieve_miss 的题 / 带 must_hit 的有效题）
+module accuracy = C-intent effective items without module_mixup（C 类有效题中未出现 module_mixup 的比例）
+path hallucination = illegal paths / extracted paths（非法路径条数 / 抽出路径条数）
+
+
+"""
 from __future__ import annotations
 
 
@@ -27,9 +33,12 @@ def render_last_report(
 
     comment = (
         f"<!-- kb hash: {git_hash}  IndexId: {index_id}  time: {started_at}\n"
-        "     Recall@5 = not retrieve_miss / effective items with must_hit\n"
-        "     module accuracy = C-intent effective items without module_mixup\n"
-        "     path hallucination = illegal paths / extracted paths\n"
+        "     Recall@5 = not retrieve_miss / effective items with must_hit"
+        "（未出现 retrieve_miss 的题 / 带 must_hit 的有效题）\n"
+        "     module accuracy = C-intent effective items without module_mixup"
+        "（C 类有效题中未出现 module_mixup 的比例）\n"
+        "     path hallucination = illegal paths / extracted paths"
+        "（非法路径条数 / 抽出路径条数）\n"
         "-->"
     )
     lines = [

@@ -1,11 +1,11 @@
 # eval/goldens.yaml — 40-item retrieve golden set for the demo purchase-order corpus.
 #
 # intent:
-#   A_penetrate       hit a layer of the knowledge card
-#   B_source          hit a constraint in sources/api
-#   C_module_trap     trap: shipments/sales must not top-rank a PO operation spec
-#   D_constraint      field/window constraints
-#   E_path_faithful   extracted path must be the asked /v1/... path
+#   A_penetrate 穿透      hit a layer of the knowledge card
+#   B_source 源文档         hit a constraint in sources/api
+#   C_module_trap模块陷阱     trap: shipments/sales must not top-rank a PO operation spec
+#   D_constraint  字段约束    field/window constraints
+#   E_path_faithful  路径忠实 extracted path must be the asked /v1/... path
 #
 # Quota: A=16, B=8, C=8, D=4, E=4
 

@@ -23,5 +23,8 @@ def test_report_contains_hash_and_tables():
     )
     assert "abcdef1" in md
     assert "Recall@5" in md
+    assert "未出现 retrieve_miss 的题" in md
+    assert "C 类有效题中未出现 module_mixup 的比例" in md
+    assert "非法路径条数 / 抽出路径条数" in md
     assert "A-01" in md
     assert "kb hash" in md

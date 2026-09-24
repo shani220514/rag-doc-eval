@@ -1,13 +1,13 @@
-<!-- kb hash: b3d5752  IndexId:   time: 2026-09-18T11:57:23.211968+08:00
-     Recall@5 = not retrieve_miss / effective items with must_hit
-     module accuracy = C-intent effective items without module_mixup
-     path hallucination = illegal paths / extracted paths
+<!-- kb hash: c610876  IndexId:   time: 2026-09-24T15:14:44.223337+08:00
+     Recall@5 = not retrieve_miss / effective items with must_hit（未出现 retrieve_miss 的题 / 带 must_hit 的有效题）
+     module accuracy = C-intent effective items without module_mixup（C 类有效题中未出现 module_mixup 的比例）
+     path hallucination = illegal paths / extracted paths（非法路径条数 / 抽出路径条数）
 -->
 # RAG retrieve report
 
-- git: b3d5752
+- git: c610876
 - index_id: 
-- started_at: 2026-09-18T11:57:23.211968+08:00
+- started_at: 2026-09-24T15:14:44.223337+08:00
 - retrieve_error: 0
 - gate_ok: True
 

@@ -1,3 +1,5 @@
+# Timestamped eval archives; last_report.md stays the tracked latest.
+eval/**/last_report_[0-9]*.md
 .env
 .venv/
 venv/

@@ -1,0 +1,132 @@
+# 样例黄金集：配合同目录 fake_retrieve.json，离线打出
+# Recall@5=40%、模块准确率=30%、路径幻觉率=20%（门禁会失败）。
+#
+# 为什么不是正式 40 题那套：
+# - 三项指标由「黄金集 × 检索切片」共同决定，只改题目改不出分数
+# - 模块准确率 30% 需要 C 类题数为 10 的倍数（正式集 C=8：2/8=25%，3/8=37.5%）
+#
+# 算术（15 题全部有效、全部带 must_hit，每题抽出恰好 1 条路径）：
+#   Recall@5     = 6 未 miss / 15 = 40%     （A 命中 3 + C 命中 3）
+#   模块准确率   = 3 未 mixup / 10 道 C = 30%
+#   路径幻觉率   = 3 非法路径 / 15 抽出 = 20%
+#
+# 不要替换 eval/goldens.yaml。运行：
+#   python scripts/eval_retrieve.py \
+#     --goldens eval/samples/metrics-40-30-20/goldens.yaml \
+#     --fixture eval/samples/metrics-40-30-20/fake_retrieve.json
+
+x-c-files: &c_files
+  - list-orders.md
+  - get-order.md
+  - order-status.md
+  - acknowledge.md
+
+goldens:
+  # A：3 命中 + 2 miss。A-03 / A-05 各带 1 条非法路径。
+  - id: A-01
+    intent: A_penetrate
+    question: 列表查询窗口最长几天？
+    must_hit: ["查询窗 ≤7 天"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-02
+    intent: A_penetrate
+    question: 分页参数叫什么？
+    must_hit: ["page_size"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-03
+    intent: A_penetrate
+    question: 列表路径是什么？
+    must_hit: ["查询窗 ≤7 天"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-04
+    intent: A_penetrate
+    question: 列表还有哪条未入库约束？
+    must_hit: ["不存在的列表约束Q"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: A-05
+    intent: A_penetrate
+    question: 发运列表路径能当采购列表用吗？
+    must_hit: ["不存在的列表约束Q"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+
+  # C：3 命中且 Top1 合法 + 7 miss 且 Top1 落在禁止文件。C-10 带非法路径。
+  - id: C-01
+    intent: C_module_trap
+    question: 发运单应该用采购订单列表接口吗？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-02
+    intent: C_module_trap
+    question: 销售订单是不是这张采购卡的范围？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-03
+    intent: C_module_trap
+    question: 用 get-order 查发运详情对不对？
+    must_hit: ["发运与销售订单不是本卡"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-04
+    intent: C_module_trap
+    question: 发运跟踪是不是 status 接口？
+    must_hit: ["未见的发运约束XYZ"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-05
+    intent: C_module_trap
+    question: 给发运单做 ack 应该打采购 ack 吗？
+    must_hit: ["未见的发运约束XYZ"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-06
+    intent: C_module_trap
+    question: Shipment 和 Purchase Order 是同一张卡吗？
+    must_hit: ["未见的发运约束XYZ"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-07
+    intent: C_module_trap
+    question: Sales Order 能否当采购订单列表来查？
+    must_hit: ["未见的发运约束XYZ"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-08
+    intent: C_module_trap
+    question: 发票接口是不是本卡正文？
+    must_hit: ["未见的发运约束XYZ"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-09
+    intent: C_module_trap
+    question: 发运列表能否复用采购分页参数？
+    must_hit: ["未见的发运约束XYZ"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
+  - id: C-10
+    intent: C_module_trap
+    question: 发运路径能否写进采购卡？
+    must_hit: ["未见的发运约束XYZ"]
+    must_not_hit: []
+    forbidden_top1_basenames: *c_files
+    forbidden_paths: []
