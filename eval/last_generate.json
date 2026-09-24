@@ -1,0 +1,207 @@
+{
+  "answer_source": "answers",
+  "model": "",
+  "temperature": null,
+  "items": [
+    {
+      "id": "A-01",
+      "answer": "/v1/purchase-orders",
+      "primary": "ok"
+    },
+    {
+      "id": "A-02",
+      "answer": "文档站「采购订单」章节",
+      "primary": "ok"
+    },
+    {
+      "id": "A-03",
+      "answer": "无需点搜索",
+      "primary": "ok"
+    },
+    {
+      "id": "A-04",
+      "answer": "查询窗 ≤7 天",
+      "primary": "ok"
+    },
+    {
+      "id": "A-05",
+      "answer": "page_size",
+      "primary": "ok"
+    },
+    {
+      "id": "A-06",
+      "answer": "/v1/purchase-orders/{orderId}",
+      "primary": "ok"
+    },
+    {
+      "id": "A-07",
+      "answer": "8 位字母数字",
+      "primary": "ok"
+    },
+    {
+      "id": "A-08",
+      "answer": "/v1/purchase-orders/status",
+      "primary": "ok"
+    },
+    {
+      "id": "A-09",
+      "answer": "accepted rejected pending",
+      "primary": "ok"
+    },
+    {
+      "id": "A-10",
+      "answer": "/v1/purchase-orders/{orderId}/ack",
+      "primary": "ok"
+    },
+    {
+      "id": "A-11",
+      "answer": "看板以读为主",
+      "primary": "ok"
+    },
+    {
+      "id": "A-12",
+      "answer": "date_from date_to 必须成对",
+      "primary": "ok"
+    },
+    {
+      "id": "A-13",
+      "answer": "PO 号 ≠ 内部 id",
+      "primary": "ok"
+    },
+    {
+      "id": "A-14",
+      "answer": "最多回看 6 个月",
+      "primary": "ok"
+    },
+    {
+      "id": "A-15",
+      "answer": "上限 200",
+      "primary": "ok"
+    },
+    {
+      "id": "A-16",
+      "answer": "本卡只讲采购订单",
+      "primary": "ok"
+    },
+    {
+      "id": "B-01",
+      "answer": "default 50",
+      "primary": "ok"
+    },
+    {
+      "id": "B-02",
+      "answer": "at most 7 days",
+      "primary": "ok"
+    },
+    {
+      "id": "B-03",
+      "answer": "8 alphanumeric characters",
+      "primary": "ok"
+    },
+    {
+      "id": "B-04",
+      "answer": "404",
+      "primary": "ok"
+    },
+    {
+      "id": "B-05",
+      "answer": "accepted, rejected, pending",
+      "primary": "ok"
+    },
+    {
+      "id": "B-06",
+      "answer": "write operation",
+      "primary": "ok"
+    },
+    {
+      "id": "B-07",
+      "answer": "at most 6 months",
+      "primary": "ok"
+    },
+    {
+      "id": "B-08",
+      "answer": "not a shipment tracking feed",
+      "primary": "ok"
+    },
+    {
+      "id": "C-01",
+      "answer": "发运与销售订单不是本卡",
+      "primary": "ok"
+    },
+    {
+      "id": "C-02",
+      "answer": "发运与销售订单不是本卡",
+      "primary": "ok"
+    },
+    {
+      "id": "C-03",
+      "answer": "发运与销售订单不是本卡",
+      "primary": "ok"
+    },
+    {
+      "id": "C-04",
+      "answer": "发运与销售订单不是本卡",
+      "primary": "ok"
+    },
+    {
+      "id": "C-05",
+      "answer": "发运与销售订单不是本卡",
+      "primary": "ok"
+    },
+    {
+      "id": "C-06",
+      "answer": "发运与销售订单不是本卡",
+      "primary": "ok"
+    },
+    {
+      "id": "C-07",
+      "answer": "发运与销售订单不是本卡",
+      "primary": "ok"
+    },
+    {
+      "id": "C-08",
+      "answer": "发运与销售订单不是本卡",
+      "primary": "ok"
+    },
+    {
+      "id": "D-01",
+      "answer": "8 位字母数字",
+      "primary": "ok"
+    },
+    {
+      "id": "D-02",
+      "answer": "查询窗 ≤7 天",
+      "primary": "ok"
+    },
+    {
+      "id": "D-03",
+      "answer": "上限 200",
+      "primary": "ok"
+    },
+    {
+      "id": "D-04",
+      "answer": "必须成对",
+      "primary": "ok"
+    },
+    {
+      "id": "E-01",
+      "answer": "/v1/purchase-orders",
+      "primary": "ok"
+    },
+    {
+      "id": "E-02",
+      "answer": "/v1/purchase-orders/{orderId}",
+      "primary": "ok"
+    },
+    {
+      "id": "E-03",
+      "answer": "/v1/purchase-orders/status",
+      "primary": "ok"
+    },
+    {
+      "id": "E-04",
+      "answer": "/v1/purchase-orders/{orderId}/ack",
+      "primary": "ok"
+    }
+  ]
+}

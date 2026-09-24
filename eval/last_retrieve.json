@@ -1,5 +1,5 @@
 {
-  "git": "c610876",
+  "git": "e0d9e20",
   "index_id": "",
   "items": [
     {
@@ -7,8 +7,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "列表接口",
+          "chunk_id": "cards/purchase-order.md#列表接口",
+          "content": "## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -17,8 +18,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "导读",
+          "chunk_id": "cards/purchase-order.md#导读",
+          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。"
         }
       ]
     },
@@ -27,8 +29,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "导读",
+          "chunk_id": "cards/purchase-order.md#导读",
+          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。"
         }
       ]
     },
@@ -37,8 +40,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "列表接口",
+          "chunk_id": "cards/purchase-order.md#列表接口",
+          "content": "## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -47,8 +51,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "列表接口",
+          "chunk_id": "cards/purchase-order.md#列表接口",
+          "content": "## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -57,8 +62,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "详情接口",
+          "chunk_id": "cards/purchase-order.md#详情接口",
+          "content": "## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。"
         }
       ]
     },
@@ -67,8 +73,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "详情接口",
+          "chunk_id": "cards/purchase-order.md#详情接口",
+          "content": "## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。"
         }
       ]
     },
@@ -77,8 +84,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "状态接口",
+          "chunk_id": "cards/purchase-order.md#状态接口",
+          "content": "## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。"
         }
       ]
     },
@@ -87,8 +95,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "状态接口",
+          "chunk_id": "cards/purchase-order.md#状态接口",
+          "content": "## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。"
         }
       ]
     },
@@ -97,8 +106,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "确认接口",
+          "chunk_id": "cards/purchase-order.md#确认接口",
+          "content": "## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。"
         }
       ]
     },
@@ -107,8 +117,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "确认接口",
+          "chunk_id": "cards/purchase-order.md#确认接口",
+          "content": "## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。"
         }
       ]
     },
@@ -117,8 +128,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "列表接口",
+          "chunk_id": "cards/purchase-order.md#列表接口",
+          "content": "## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -127,8 +139,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "详情接口",
+          "chunk_id": "cards/purchase-order.md#详情接口",
+          "content": "## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。"
         }
       ]
     },
@@ -137,8 +150,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "列表接口",
+          "chunk_id": "cards/purchase-order.md#列表接口",
+          "content": "## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -147,8 +161,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "列表接口",
+          "chunk_id": "cards/purchase-order.md#列表接口",
+          "content": "## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -157,8 +172,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "导读",
+          "chunk_id": "cards/purchase-order.md#导读",
+          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。"
         }
       ]
     },
@@ -166,9 +182,10 @@
       "id": "B-01",
       "chunks": [
         {
-          "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "file_name": "sources/api/list-orders.md",
+          "title": "List purchase orders",
+          "chunk_id": "sources/api/list-orders.md#List purchase orders",
+          "content": "# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list."
         }
       ]
     },
@@ -176,9 +193,10 @@
       "id": "B-02",
       "chunks": [
         {
-          "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "file_name": "sources/api/list-orders.md",
+          "title": "List purchase orders",
+          "chunk_id": "sources/api/list-orders.md#List purchase orders",
+          "content": "# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list."
         }
       ]
     },
@@ -186,9 +204,10 @@
       "id": "B-03",
       "chunks": [
         {
-          "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "file_name": "sources/api/get-order.md",
+          "title": "Get purchase order",
+          "chunk_id": "sources/api/get-order.md#Get purchase order",
+          "content": "# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint."
         }
       ]
     },
@@ -196,9 +215,10 @@
       "id": "B-04",
       "chunks": [
         {
-          "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "file_name": "sources/api/get-order.md",
+          "title": "Get purchase order",
+          "chunk_id": "sources/api/get-order.md#Get purchase order",
+          "content": "# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint."
         }
       ]
     },
@@ -206,9 +226,10 @@
       "id": "B-05",
       "chunks": [
         {
-          "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "file_name": "sources/api/order-status.md",
+          "title": "Purchase order status",
+          "chunk_id": "sources/api/order-status.md#Purchase order status",
+          "content": "# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed."
         }
       ]
     },
@@ -216,9 +237,10 @@
       "id": "B-06",
       "chunks": [
         {
-          "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "file_name": "sources/api/acknowledge.md",
+          "title": "Acknowledge purchase order",
+          "chunk_id": "sources/api/acknowledge.md#Acknowledge purchase order",
+          "content": "# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment."
         }
       ]
     },
@@ -226,9 +248,10 @@
       "id": "B-07",
       "chunks": [
         {
-          "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "file_name": "sources/api/list-orders.md",
+          "title": "List purchase orders",
+          "chunk_id": "sources/api/list-orders.md#List purchase orders",
+          "content": "# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list."
         }
       ]
     },
@@ -236,9 +259,10 @@
       "id": "B-08",
       "chunks": [
         {
-          "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "file_name": "sources/api/order-status.md",
+          "title": "Purchase order status",
+          "chunk_id": "sources/api/order-status.md#Purchase order status",
+          "content": "# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed."
         }
       ]
     },
@@ -247,8 +271,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "导读",
+          "chunk_id": "cards/purchase-order.md#导读",
+          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。"
         }
       ]
     },
@@ -257,8 +282,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "导读",
+          "chunk_id": "cards/purchase-order.md#导读",
+          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。"
         }
       ]
     },
@@ -267,8 +293,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "导读",
+          "chunk_id": "cards/purchase-order.md#导读",
+          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。"
         }
       ]
     },
@@ -277,8 +304,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "导读",
+          "chunk_id": "cards/purchase-order.md#导读",
+          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。"
         }
       ]
     },
@@ -287,8 +315,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "已知坑",
+          "chunk_id": "cards/purchase-order.md#已知坑",
+          "content": "## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -297,8 +326,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "已知坑",
+          "chunk_id": "cards/purchase-order.md#已知坑",
+          "content": "## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -307,8 +337,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "已知坑",
+          "chunk_id": "cards/purchase-order.md#已知坑",
+          "content": "## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -317,8 +348,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "已知坑",
+          "chunk_id": "cards/purchase-order.md#已知坑",
+          "content": "## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -327,8 +359,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "详情接口",
+          "chunk_id": "cards/purchase-order.md#详情接口",
+          "content": "## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。"
         }
       ]
     },
@@ -337,8 +370,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "状态接口",
+          "chunk_id": "cards/purchase-order.md#状态接口",
+          "content": "## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。"
         }
       ]
     },
@@ -347,8 +381,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "列表接口",
+          "chunk_id": "cards/purchase-order.md#列表接口",
+          "content": "## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -357,8 +392,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "列表接口",
+          "chunk_id": "cards/purchase-order.md#列表接口",
+          "content": "## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -367,8 +403,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "列表接口",
+          "chunk_id": "cards/purchase-order.md#列表接口",
+          "content": "## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。"
         }
       ]
     },
@@ -377,8 +414,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "详情接口",
+          "chunk_id": "cards/purchase-order.md#详情接口",
+          "content": "## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。"
         }
       ]
     },
@@ -387,8 +425,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "状态接口",
+          "chunk_id": "cards/purchase-order.md#状态接口",
+          "content": "## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。"
         }
       ]
     },
@@ -397,8 +436,9 @@
       "chunks": [
         {
           "file_name": "cards/purchase-order.md",
-          "title": "采购订单穿透卡",
-          "content": "---\nid: purchase-order\nmodule: PO\naliases: [采购订单, Purchase Order]\nnot_this: [Shipment, Sales Order]\n---\n\n## 导读\n\n本卡只讲采购订单（Purchase Order）。发运与销售订单不是本卡。\n文档入口：文档站「采购订单」章节。列表页打开即拉数，无需点搜索。\n\n## 列表接口\n\n列表 `GET /v1/purchase-orders`。查询窗 ≤7 天，最多回看 6 个月。分页 `page_size` 默认 50、上限 200。`date_from` 与 `date_to` 必须成对。\n\n## 详情接口\n\n详情 `GET /v1/purchase-orders/{orderId}`。单号 8 位字母数字。PO 号 ≠ 内部 id。\n\n## 状态接口\n\n状态 `GET /v1/purchase-orders/status`。查询窗 ≤7 天。返回 accepted、rejected、pending。\n\n## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。\n\n## 已知坑\n\n发运与销售订单不是本卡。窗口两边不一致；PO 号 ≠ 内部 id；`date_from` 与 `date_to` 必须成对。\n\n## 相关链接\n\n发运 API、发票 API 只挂链接，正文不展开。\n\n\n# Acknowledge purchase order\n\nOriginal demo spec (not a vendor document).\n\n`POST /v1/purchase-orders/{orderId}/ack` is the write operation. Dashboards stay read-first: 看板以读为主.\n\nDo not call this endpoint to acknowledge a shipment.\n\n\n# Get purchase order\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/{orderId}` returns one purchase order.\n\n`orderId` is 8 alphanumeric characters. It is not an internal auto-increment id. PO 号 ≠ 内部 id.\n\nUnknown ids return 404. This is not a shipment detail endpoint.\n\n\n# List purchase orders\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders` returns purchase orders in a query window of at most 7 days, looking back at most 6 months.\n\nPagination uses `page_size` (default 50, maximum 200). `date_from` and `date_to` must be sent as a pair.\n\nThis endpoint is read-only. It is not the shipment list and not the sales-order list.\n\n\n# Purchase order status\n\nOriginal demo spec (not a vendor document).\n\n`GET /v1/purchase-orders/status` returns status rows in a query window of at most 7 days.\n\nStatus values: accepted, rejected, pending.\n\nThis is not a shipment tracking feed.\n"
+          "title": "确认接口",
+          "chunk_id": "cards/purchase-order.md#确认接口",
+          "content": "## 确认接口\n\n写操作 `POST /v1/purchase-orders/{orderId}/ack`。看板以读为主。"
         }
       ]
     }

@@ -1,0 +1,98 @@
+{
+  "DF-01": [
+    {
+      "file_name": "cards/DF-order.md",
+      "title": "1.1 什么是DF订单",
+      "chunk_id": "cards/DF-order.md#1.1 什么是DF订单",
+      "content": "### 1.1 什么是DF订单\nDirect Fulfillment（DF）：**买家在亚马逊前台下单，订单推送至卖家，由卖家仓库直接打包发货，亚马逊负责前端客服、退款、退货审核**。\n> 区别：FBA是亚马逊仓库发货；DF是卖家自发货，归属亚马逊DF渠道，需遵守亚马逊DF时效、标签、物流要求。"
+    }
+  ],
+  "DF-02": [
+    {
+      "file_name": "cards/DF-order.md",
+      "title": "1.2 DF订单特点",
+      "chunk_id": "cards/DF-order.md#1.2 DF订单特点",
+      "content": "### 1.2 DF订单特点\n- 订单来源：亚马逊前台，买家账号为亚马逊买家\n- 履约主体：卖家负责拣货、打包、贴标、发货、物流追踪\n- 客服主体：亚马逊前台客服优先承接买家咨询；卖家后台接收DF工单处理\n- 指标考核：订单准时发货率、有效追踪率、取消率、迟发率、缺陷率，直接影响DF权限"
+    }
+  ],
+  "DF-03": [
+    {
+      "file_name": "cards/DF-order.md",
+      "title": "1.3 卖家侧入口",
+      "chunk_id": "cards/DF-order.md#1.3 卖家侧入口",
+      "content": "### 1.3 卖家侧入口\n- 订单查看：亚马逊后台 > Orders > Direct Fulfillment Orders\n- 工单处理：Direct Fulfillment Case / Concession Hub（理赔/让步单）\n- 报表：DF履约指标报表、DF退货报表\n\n---"
+    }
+  ],
+  "DF-04": [
+    {
+      "file_name": "cards/DF-order.md",
+      "title": "时效要求（关键）",
+      "chunk_id": "cards/DF-order.md#2.1 时效要求（关键）",
+      "content": "没有写备货时效。错误召回了 GET /v1/shipments。"
+    }
+  ],
+  "DF-05": [
+    {
+      "file_name": "cards/DF-order.md",
+      "title": "2.2 面单&包装要求",
+      "chunk_id": "cards/DF-order.md#2.2 面单&包装要求",
+      "content": "### 2.2 面单&包装要求\n- 必须使用亚马逊DF标签（订单内下载），不能用普通自发货标签\n- 外箱不能出现其他平台logo，包装符合亚马逊包装标准\n- 装箱单：按DF要求放置，部分站点禁止放卖家联系方式"
+    }
+  ],
+  "DF-06": [
+    {
+      "file_name": "cards/DF-order.md",
+      "title": "2.4 退货规则",
+      "chunk_id": "cards/DF-order.md#2.4 退货规则",
+      "content": "### 2.4 退货规则\nDF退货：买家发起退货请求，亚马逊审核退货标签，买家寄回**卖家仓库**（不是亚马逊仓）\n- 买家退货地址：卖家配置的DF退货地址\n- 收到退货后：卖家验货，在规定时限内处理退款；商品损坏/缺失，可提交证据拒绝全额退款\n\n---"
+    }
+  ],
+  "DF-07": [
+    {
+      "file_name": "cards/DF-order.md",
+      "title": "3. 订单状态释义",
+      "chunk_id": "cards/DF-order.md#3. 订单状态释义",
+      "content": "## 3. 订单状态释义\n| 订单状态 | 说明 | 客服动作 |\n| ---- | ---- | ---- |\n| Unshipped | 未发货，新订单已推送卖家 | 尽快拣货打包，按时ship confirm |\n| Shipped | 已标记发货，追踪号上传 | 监控物流轨迹，处理买家物流查询 |\n| Delivered | 已签收 | 留意买家少件、破损、未收到工单 |\n| Cancelled | 订单已取消 | 核查取消原因；亚马逊主动取消/买家取消，区分责任 |\n| Return Requested | 买家发起退货申请 | 等待亚马逊审核退货单，准备接收退货 |\n| Return Received | 卖家已收到退回包裹 | 验货，在时效内退款或拒退 |\n| Concession | 让步单（理赔单） | 查看Concession Hub，核对索赔理由，提交抗辩证据 |\n\n---"
+    }
+  ],
+  "DF-08": [
+    {
+      "file_name": "cards/DF-order.md",
+      "title": "库存不足无法发货",
+      "chunk_id": "cards/DF-order.md#4.2 库存不足无法发货",
+      "content": "库存不足时没有给出处理原则。错误召回了 GET /v1/shipments。"
+    }
+  ],
+  "DF-09": [
+    {
+      "file_name": "cards/DF-order.md",
+      "title": "1.3 卖家侧入口",
+      "chunk_id": "cards/DF-order.md#1.3 卖家侧入口",
+      "content": "### 1.3 卖家侧入口\n- 订单查看：亚马逊后台 > Orders > Direct Fulfillment Orders\n- 工单处理：Direct Fulfillment Case / Concession Hub（理赔/让步单）\n- 报表：DF履约指标报表、DF退货报表\n\n---"
+    }
+  ],
+  "DF-10": [
+    {
+      "file_name": "sources/api/acknowledge.md",
+      "title": "Acknowledge purchase order",
+      "chunk_id": "sources/api/acknowledge.md#Acknowledge purchase order",
+      "content": "这是采购确认接口，不是 DF 发货确认。"
+    }
+  ],
+  "DF-11": [
+    {
+      "file_name": "sources/api/get-order.md",
+      "title": "Get purchase order",
+      "chunk_id": "sources/api/get-order.md#Get purchase order",
+      "content": "这是采购详情，不是让步单。"
+    }
+  ],
+  "DF-12": [
+    {
+      "file_name": "sources/api/list-orders.md",
+      "title": "List purchase orders",
+      "chunk_id": "sources/api/list-orders.md#List purchase orders",
+      "content": "采购列表 GET /v1/shipments，不是 DF 妥投状态。"
+    }
+  ]
+}

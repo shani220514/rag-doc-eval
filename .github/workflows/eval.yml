@@ -37,3 +37,8 @@ jobs:
         run: python scripts/eval_retrieve.py --fixture tests/fixtures/fake_retrieve.json
         env:
           EVAL_OUT_DIR: ${{ runner.temp }}/eval-out
+
+      - name: Fixture generate
+        run: python scripts/eval_generate.py --fixture tests/fixtures/fake_retrieve.json --answers tests/fixtures/fake_answers.json
+        env:
+          EVAL_OUT_DIR: ${{ runner.temp }}/eval-generate

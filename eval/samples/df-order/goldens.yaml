@@ -1,0 +1,111 @@
+# DF 订单知识库样例。不要替换 eval/goldens.yaml。
+#
+# 未挂门禁（退出码 0），报告写到本目录 last_report.md：
+#   python scripts/eval_retrieve.py \
+#     --goldens eval/samples/df-order/goldens.yaml \
+#     --fixture eval/samples/df-order/fake_retrieve.json
+#
+# 故意挂门禁（退出码 1）。Recall@5=58.3%，模块准确率=25%，路径幻觉率=100%。
+# 报告写到 gate-fail/，不覆盖上面的通过报告：
+#   python scripts/eval_retrieve.py \
+#     --goldens eval/samples/df-order/goldens.yaml \
+#     --fixture eval/samples/df-order/fake_retrieve_fail.json \
+#     --out-dir eval/samples/df-order/gate-fail
+#
+# 挂门禁算术（12 题都有效、都有 must_hit，C 类 4 题）：
+#   Recall@5   = 7 未 miss / 12 = 58.3%   （DF-04/08/10/11/12 没召回）
+#   模块准确率 = 1 未 mixup / 4 道 C = 25% （DF-10/11/12 的 Top1 是采购接口文档）
+#   路径幻觉率 = 3 条 /v1/shipments / 3 条抽出 = 100% （DF-04/08/12）
+
+x-po-files: &po_files
+  - purchase-order.md
+  - list-orders.md
+  - get-order.md
+  - order-status.md
+  - acknowledge.md
+
+goldens:
+  - id: DF-01
+    intent: A_penetrate
+    question: DF 订单和 FBA 有什么区别？
+    must_hit: ["DF是卖家自发货"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: DF-02
+    intent: A_penetrate
+    question: DF 订单的履约主体负责什么？
+    must_hit: ["卖家负责拣货、打包、贴标、发货、物流追踪"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: DF-03
+    intent: A_penetrate
+    question: 卖家在后台哪里查看 DF 订单？
+    must_hit: ["Direct Fulfillment Orders"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: DF-04
+    intent: D_constraint
+    question: DF 备货时效一般是多久？
+    must_hit: ["24小时内处理（工作日）"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: DF-05
+    intent: D_constraint
+    question: DF 面单能不能用普通自发货标签？
+    must_hit: ["不能用普通自发货标签"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: DF-06
+    intent: A_penetrate
+    question: DF 退货寄回哪里？
+    must_hit: ["不是亚马逊仓"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: DF-07
+    intent: A_penetrate
+    question: Unshipped 表示什么？
+    must_hit: ["未发货，新订单已推送卖家"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: DF-08
+    intent: A_penetrate
+    question: 库存不足时能不能直接取消 DF 订单？
+    must_hit: ["禁止直接取消订单"]
+    must_not_hit: []
+    forbidden_top1_basenames: []
+    forbidden_paths: []
+  - id: DF-09
+    intent: C_module_trap
+    question: 采购订单列表接口能用来找 DF 订单吗？
+    must_hit: ["Direct Fulfillment Orders"]
+    must_not_hit: []
+    forbidden_top1_basenames: *po_files
+    forbidden_paths: []
+  - id: DF-10
+    intent: C_module_trap
+    question: 采购确认接口能代替 DF 的 Ship Confirm 吗？
+    must_hit: ["确认发货（Ship Confirm）"]
+    must_not_hit: []
+    forbidden_top1_basenames: *po_files
+    forbidden_paths: []
+  - id: DF-11
+    intent: C_module_trap
+    question: 采购详情接口能处理 Concession 让步单吗？
+    must_hit: ["亚马逊先行赔付买家，然后向卖家追偿"]
+    must_not_hit: []
+    forbidden_top1_basenames: *po_files
+    forbidden_paths: []
+  - id: DF-12
+    intent: C_module_trap
+    question: 采购状态接口能解释 DF 的 Delivered 吗？
+    must_hit: ["已签收"]
+    must_not_hit: []
+    forbidden_top1_basenames: *po_files
+    forbidden_paths: []

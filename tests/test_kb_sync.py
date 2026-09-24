@@ -36,6 +36,22 @@ def test_dry_run_does_not_call_eval_retrieve():
     assert "eval_retrieve" not in proc.stderr
 
 
+def test_dry_run_lists_heading_chunks_not_whole_files_only():
+    """每一节一行。采购卡按标题切开，接口说明保持一节。"""
+    proc = _run(["--dry-run"])
+    assert proc.returncode == 0, proc.stderr + proc.stdout
+    assert "cards/purchase-order.md#列表接口" in proc.stdout
+    assert "cards/purchase-order.md#导读" in proc.stdout
+    assert "sources/api/list-orders.md#List purchase orders" in proc.stdout
+    lines = [ln for ln in proc.stdout.splitlines() if ln.strip()]
+    # 1 张卡 7 节 + 4 份接口说明各 1 节。
+    assert len(lines) >= 11, proc.stdout
+    for line in lines:
+        chunk_id, digest = line.rsplit(" ", 1)
+        assert "#" in chunk_id, line
+        assert re.fullmatch(r"[0-9a-f]{64}", digest), line
+
+
 def test_dry_run_uses_forward_slash_rel_paths():
     proc = _run(["--dry-run"])
     assert proc.returncode == 0, proc.stderr + proc.stdout

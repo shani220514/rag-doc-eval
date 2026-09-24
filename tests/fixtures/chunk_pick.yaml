@@ -1,0 +1,43 @@
+# 正式夹具每题选用的切片。内容必须来自 chunk_md.split_markdown，不要手改正文。
+# 一题一段：Top5 里只放能回答该题的那一节。
+picks:
+  A-01: cards/purchase-order.md#列表接口
+  A-02: cards/purchase-order.md#导读
+  A-03: cards/purchase-order.md#导读
+  A-04: cards/purchase-order.md#列表接口
+  A-05: cards/purchase-order.md#列表接口
+  A-06: cards/purchase-order.md#详情接口
+  A-07: cards/purchase-order.md#详情接口
+  A-08: cards/purchase-order.md#状态接口
+  A-09: cards/purchase-order.md#状态接口
+  A-10: cards/purchase-order.md#确认接口
+  A-11: cards/purchase-order.md#确认接口
+  A-12: cards/purchase-order.md#列表接口
+  A-13: cards/purchase-order.md#详情接口
+  A-14: cards/purchase-order.md#列表接口
+  A-15: cards/purchase-order.md#列表接口
+  A-16: cards/purchase-order.md#导读
+  B-01: sources/api/list-orders.md#List purchase orders
+  B-02: sources/api/list-orders.md#List purchase orders
+  B-03: sources/api/get-order.md#Get purchase order
+  B-04: sources/api/get-order.md#Get purchase order
+  B-05: sources/api/order-status.md#Purchase order status
+  B-06: sources/api/acknowledge.md#Acknowledge purchase order
+  B-07: sources/api/list-orders.md#List purchase orders
+  B-08: sources/api/order-status.md#Purchase order status
+  C-01: cards/purchase-order.md#导读
+  C-02: cards/purchase-order.md#导读
+  C-03: cards/purchase-order.md#导读
+  C-04: cards/purchase-order.md#导读
+  C-05: cards/purchase-order.md#已知坑
+  C-06: cards/purchase-order.md#已知坑
+  C-07: cards/purchase-order.md#已知坑
+  C-08: cards/purchase-order.md#已知坑
+  D-01: cards/purchase-order.md#详情接口
+  D-02: cards/purchase-order.md#状态接口
+  D-03: cards/purchase-order.md#列表接口
+  D-04: cards/purchase-order.md#列表接口
+  E-01: cards/purchase-order.md#列表接口
+  E-02: cards/purchase-order.md#详情接口
+  E-03: cards/purchase-order.md#状态接口
+  E-04: cards/purchase-order.md#确认接口

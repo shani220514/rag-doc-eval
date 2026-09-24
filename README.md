@@ -5,9 +5,9 @@
 ![pytest](https://img.shields.io/badge/pytest-offline-0A7B3E.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)
 
-Offline-first **RAG retrieve evaluation** harness: golden set, rule-based Top5 scoring, **no LLM-as-judge**.
+Offline-first **RAG retrieve evaluation** harness: golden set, rule-based Top5 scoring, plus a separate rule-scored short answer. **No LLM-as-judge**.
 
-离线优先的 **RAG 检索评测脚手架**。不问「模型答得对不对」，只问：
+离线优先的 **RAG 检索评测脚手架**。检索先问 Top5 里有没有原文；生成是后一步，用规则看短答，不用模型当裁判。检索只问：
 
 > 给定一道题，检索返回的 Top5 切片里，有没有出现预期原文？
 
@@ -21,7 +21,8 @@ Offline-first **RAG retrieve evaluation** harness: golden set, rule-based Top5 s
 | 你看到的                   | 仓库里对应什么                                              |
 | ---------------------- | ---------------------------------------------------- |
 | **只评 Retriever**，不生成答案 | `scripts/eval_retrieve.py` 只取 Top5 切片                |
-| **规则打分，不用 LLM 当裁判**    | `scripts/eval_scoring.py` 做大小写敏感子串命中                 |
+| **规则打分，不用 LLM 当裁判**    | 检索看 `eval_scoring.py`；短答看 `eval_generate.py`            |
+| **短答可换参**                | `--answers` 换正文；`--model` / `--temperature` 可选调用模型     |
 | **40 题 × 5 意图**        | `eval/goldens.yaml`：穿透 / 源文档 / 模块陷阱 / 字段约束 / 路径忠实    |
 | **空跑必挂**               | 有效题为 0 时门禁失败，不会按 100% 误通过                            |
 | **密钥进不了知识库**           | `scripts/sync_guard.py` 拦 `.env`、报告、Bearer / AKIA 形态 |
@@ -158,9 +159,10 @@ python -m pip install -r requirements.txt
 python -m pytest tests/ -v
 python scripts/kb_sync.py --dry-run
 python scripts/eval_retrieve.py --fixture tests/fixtures/fake_retrieve.json
+python scripts/eval_generate.py --fixture tests/fixtures/fake_retrieve.json --answers tests/fixtures/fake_answers.json
 ```
 
-本地最近一次离线测试为 **47** 条通过。GitHub Actions 会对 `main` / PR 跑：pytest → sync dry-run → fixture 评测。
+本地离线测试见 pytest 结果。GitHub Actions 会对 `main` / PR 跑：pytest → sync dry-run → fixture 检索评测 → fixture 生成评测。
 
 可选线上检索：复制 `[env.example](env.example)` 为 `.env`，填入 `RETRIEVE_API_KEY` / `RETRIEVE_WORKSPACE_ID` / `RETRIEVE_INDEX_ID` 后执行：
 
@@ -196,12 +198,14 @@ sources/api/                接口说明（允许同步的语料）
 eval/goldens.yaml           40 题黄金集
 eval/path_whitelist.yaml    从语料重生成，不要手改当真理
 eval/last_report.md         最近一次评测报告
-scripts/eval_retrieve.py    评测 CLI（fixture / live）
-scripts/eval_scoring.py     规则打分与门禁
+scripts/eval_retrieve.py    检索评测 CLI（fixture / live）
+scripts/eval_generate.py    生成评测 CLI（--answers 或 --model / --temperature）
+scripts/eval_scoring.py     检索规则打分与门禁
+scripts/chunk_md.py         按标题把 Markdown 切成段
 scripts/sync_guard.py       路径白名单 + 密钥形态拦截
-scripts/kb_sync.py          --dry-run 列出 sha256；live upsert 为 v1 桩
+scripts/kb_sync.py          --dry-run 列出每段 chunk_id 与 sha256；live upsert 为 v1 桩
 scripts/path_extract.py     从 Markdown 抽出 /v1/... 路径
-tests/                      离线 pytest（47）
+tests/                      离线 pytest（68）
 .github/workflows/eval.yml  pytest + dry-run + fixture 评测
 docs/项目文档.md            中文详解
 ```
@@ -217,13 +221,13 @@ docs/项目文档.md            中文详解
 
 | 不做           | 实际行为                               |
 | ------------ | ---------------------------------- |
-| 生成式问答        | 不评测模型写出的答案                         |
+| 生成混进检索分      | 短答写 `last_generate_report.md`，不改检索门禁 |
 | LLM-as-judge | 命中判定是子串规则，不是模型打分                   |
 | 线上文档入库       | `kb_sync.py` 不带 `--dry-run` 时退出码 2 |
 | 真实业务数据       | 仓库内没有客户文档、内部接口、账号密钥                |
 
 
-已经做到：40 题黄金集、规则打分、空跑必挂、离线 pytest、GitHub Actions、sync dry-run 与密钥拦截。
+已经做到：40 题黄金集、按标题切片、检索规则打分、生成短答规则打分（`--answers` / `--model` / `--temperature`）、空跑必挂、离线 pytest、GitHub Actions、sync dry-run 与密钥拦截。
 
 ---
 
@@ -246,13 +250,17 @@ python -m pip install -r requirements.txt
 python -m pytest tests/ -v
 python scripts/kb_sync.py --dry-run
 python scripts/eval_retrieve.py --fixture tests/fixtures/fake_retrieve.json
+python scripts/eval_generate.py --fixture tests/fixtures/fake_retrieve.json --answers tests/fixtures/fake_answers.json --temperature 0.2
 ```
+
+`--answers` 在时，`--model` 和 `--temperature` 不生效。去掉 `--answers` 并设置 `GENERATE_API_KEY` 后，才会按 `--model` / `--temperature` 写短答。
 
 | 命令 | 作用 | 通过时 |
 |------|------|--------|
 | `pytest tests/ -v` | 全部离线单测 | 退出码 0 |
-| `kb_sync.py --dry-run` | 列出可入库 Markdown + sha256 | 退出码 0 |
-| `eval_retrieve.py --fixture ...` | 正式 40 题 + 假 Top5 | 退出码 0，写 `eval/last_report.md`（约 100%） |
+| `kb_sync.py --dry-run` | 按标题列出可入库切片 + sha256 | 退出码 0 |
+| `eval_retrieve.py --fixture ...` | 正式 40 题 + 假 Top5 | 退出码 0，写 `eval/last_report.md` |
+| `eval_generate.py --answers ...` | 同一批 Top5 + 夹具短答 | 退出码 0，写 `last_generate_report.md` |
 
 看正式报告：`eval/last_report.md`。
 
@@ -263,6 +271,18 @@ python scripts/eval_retrieve.py --goldens eval/samples/metrics-40-30-20/goldens.
 ```
 
 退出码 **1**。报告在 `eval/samples/metrics-40-30-20/last_report.md`，以及同目录 `last_report_时间戳.md`。正式 40 题报告不会被改。
+
+## DF 订单样例（另一份黄金集）
+
+同一套 `eval/samples/df-order/goldens.yaml`（12 题，来自 `cards/DF-order.md`）。正式 40 题不改。
+
+```powershell
+# 未挂门禁，退出码 0。报告：eval/samples/df-order/last_report.md
+python scripts/eval_retrieve.py --goldens eval/samples/df-order/goldens.yaml --fixture eval/samples/df-order/fake_retrieve.json
+
+# 故意挂门禁，退出码 1。报告：eval/samples/df-order/gate-fail/last_report.md
+python scripts/eval_retrieve.py --goldens eval/samples/df-order/goldens.yaml --fixture eval/samples/df-order/fake_retrieve_fail.json --out-dir eval/samples/df-order/gate-fail
+```
 
 ## 只跑某一个测试
 
