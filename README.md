@@ -79,6 +79,8 @@ flowchart LR
 
 报告里 `index_id` 为空 = fixture 证据，不是线上索引成绩。
 
+同一批 Top5 可以再评短答，单独写 `eval/last_generate_report.md`，不改上面的检索门禁。短答门禁：答案命中率 ≥ 80%（`must_hit` 都在短答里），答案路径幻觉率 ≤ 5%（短答里抽出的 `/v1/...` 必须已经出现在这题 Top5 里）。
+
 ---
 
 
@@ -97,7 +99,7 @@ flowchart LR
 | `E_path_faithful` | 问到的 `/v1/...` 是否被抽出且在白名单  | 路径抽取 + 白名单                      |
 
 
-命中规则：`must_hit` 每一项都必须作为**大小写敏感的原文子串**出现在 Top5 里。题目改了、卡片改了，针从语料里消失时，离线测试会先失败，而不是静默把题打成 miss。
+命中规则：`must_hit` 每一项都必须作为**大小写敏感的原文子串**出现在 Top5 里。题目改了、卡片改了，针从语料里消失时，`tests/test_goldens_schema.py` 会先失败，而不是静默把题打成 miss。同样的检查也可以单独跑：`python scripts/check_goldens_needles.py`。
 
 ---
 
@@ -139,11 +141,11 @@ flowchart LR
 - retrieve_error: 0
 - gate_ok: True
 
-| metric     | current | gate                                      |
-|------------|---------|-------------------------------------------|
-| Recall@5   | 100.0%  | drop vs baseline ≤ 5pp and absolute ≥ 80% |
-| 模块准确率 | 100.0%  | not below baseline and absolute ≥ 90%     |
-| 幻觉路径率 | 0.0%    | not above baseline and absolute ≤ 5%      |
+| metric | current | baseline | gate |
+|--------|---------|----------|------|
+| Recall@5 | 100.0% | — | drop vs baseline ≤ 5pp and absolute ≥ 80% |
+| 模块准确率 | 100.0% | — | not below baseline and absolute ≥ 90% |
+| 幻觉路径率 | 0.0% | — | not above baseline and absolute ≤ 5% |
 ```
 
 ---
@@ -181,7 +183,7 @@ pytest 不会在 import 时读 `.env`。fixture 模式不读 `.env`。可用 `EV
 ## 换成你自己的文档
 
 1. 替换 `cards/`、`sources/` 中的 Markdown
-2. 按同样 schema 改 `eval/goldens.yaml`（`must_hit` 必须能在语料里找到）
+2. 按同样 schema 改 `eval/goldens.yaml`（`must_hit` 必须能在语料里找到，用 `scripts/check_goldens_needles.py` 核对）
 3. 继续跑同一套 pytest / 打分器 / CI
 
 `eval/path_whitelist.yaml` 每次评测从语料重生成，不要当手改真理。
@@ -193,21 +195,27 @@ pytest 不会在 import 时读 `.env`。fixture 模式不读 `.env`。可用 `EV
 ## 目录
 
 ```
-cards/                      分层知识卡（允许同步的语料）
-sources/api/                接口说明（允许同步的语料）
-eval/goldens.yaml           40 题黄金集
-eval/path_whitelist.yaml    从语料重生成，不要手改当真理
-eval/last_report.md         最近一次评测报告
-scripts/eval_retrieve.py    检索评测 CLI（fixture / live）
-scripts/eval_generate.py    生成评测 CLI（--answers 或 --model / --temperature）
-scripts/eval_scoring.py     检索规则打分与门禁
-scripts/chunk_md.py         按标题把 Markdown 切成段
-scripts/sync_guard.py       路径白名单 + 密钥形态拦截
-scripts/kb_sync.py          --dry-run 列出每段 chunk_id 与 sha256；live upsert 为 v1 桩
-scripts/path_extract.py     从 Markdown 抽出 /v1/... 路径
-tests/                      离线 pytest（68）
-.github/workflows/eval.yml  pytest + dry-run + fixture 评测
-docs/项目文档.md            中文详解
+cards/                         分层知识卡（允许同步的语料）
+sources/api/                   接口说明（允许同步的语料）
+eval/goldens.yaml              40 题黄金集（A16 / B8 / C8 / D4 / E4）
+eval/path_whitelist.yaml       从语料重生成，不要手改当真理
+eval/last_report.md            最近一次检索评测报告
+eval/last_generate_report.md   最近一次短答评测报告
+eval/samples/                  样例黄金集，以及故意挂门禁的复现
+scripts/eval_retrieve.py       检索评测 CLI（fixture / live）
+scripts/eval_generate.py       短答评测 CLI（--answers 或 --model / --temperature）
+scripts/eval_scoring.py        检索规则打分与门禁
+scripts/report.py              检索报告渲染
+scripts/chunk_md.py            按标题把 Markdown 切成段
+scripts/path_extract.py        从正文抽出 /v1/... 路径
+scripts/sync_guard.py          路径白名单 + 密钥形态拦截
+scripts/kb_sync.py             --dry-run 列出 chunk_id 与 sha256；live upsert 为 v1 桩
+scripts/retrieve_client.py     Retrieve HTTP 客户端
+scripts/check_goldens_needles.py  校验每根针是否还在语料里
+scripts/kb_paths.py            仓库根与 git 短哈希
+tests/                         离线 pytest（72）
+.github/workflows/eval.yml     pytest + dry-run + fixture 评测
+docs/项目文档.md               中文详解
 ```
 
 只有 `cards/**/*.md` 和 `sources/**/*.md` 允许进入「可上传」范围。`.env`、评测报告、密钥形态正文会被拦截。
@@ -227,7 +235,7 @@ docs/项目文档.md            中文详解
 | 真实业务数据       | 仓库内没有客户文档、内部接口、账号密钥                |
 
 
-已经做到：40 题黄金集、按标题切片、检索规则打分、生成短答规则打分（`--answers` / `--model` / `--temperature`）、空跑必挂、离线 pytest、GitHub Actions、sync dry-run 与密钥拦截。
+已经做到：40 题黄金集、按标题切片、检索规则打分、短答规则打分（`--answers` / `--model` / `--temperature`）、空跑必挂、绝对阈值加可选 baseline、针还在不在语料里的离线检查、pytest 72、GitHub Actions、sync dry-run 与密钥拦截。
 
 ---
 
@@ -257,7 +265,7 @@ python scripts/eval_generate.py --fixture tests/fixtures/fake_retrieve.json --an
 
 | 命令 | 作用 | 通过时 |
 |------|------|--------|
-| `pytest tests/ -v` | 全部离线单测 | 退出码 0 |
+| `pytest tests/ -v` | 全部离线单测（72） | 退出码 0 |
 | `kb_sync.py --dry-run` | 按标题列出可入库切片 + sha256 | 退出码 0 |
 | `eval_retrieve.py --fixture ...` | 正式 40 题 + 假 Top5 | 退出码 0，写 `eval/last_report.md` |
 | `eval_generate.py --answers ...` | 同一批 Top5 + 夹具短答 | 退出码 0，写 `last_generate_report.md` |
@@ -309,6 +317,6 @@ $env:EVAL_NO_DOTENV = "1"
 $env:EVAL_OUT_DIR = "tmp-eval"
 ```
 
-`EVAL_OUT_DIR` 可把报告写到临时目录，避免覆盖已提交的 `eval/last_report.md`。
+`EVAL_OUT_DIR` 可把报告写到临时目录，避免覆盖已提交的 `eval/last_report.md`。`GENERATE_API_KEY` 只在 `eval_generate.py` 走 `--model`、且没有 `--answers` 时需要，缺了退出码 **2**。`GENERATE_URL` 用来改生成端点，不填就用默认地址。
 
 退出码：**0** 门禁通过 · **1** 评测完但未过 · **2** 缺环境 / live 未实现。
